@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"D:/Downloads/20260414_scuderiabandeiras_alémdaspiastas_dudabairros-2796.jpg\" \"C:/Projetos ClaudeCode/Scuderia Bandeiras/Caterham/Brand/gallery-01-side.jpg\")",
+      "Bash(cp \"D:/Downloads/20260414_scuderiabandeiras_alémdaspiastas_dudabairros-2809.jpg\" \"C:/Projetos ClaudeCode/Scuderia Bandeiras/Caterham/Brand/gallery-02-front.jpg\")",
+      "Bash(cp \"D:/Downloads/20260414_scuderiabandeiras_alémdaspiastas_dudabairros-2954.jpg\" \"C:/Projetos ClaudeCode/Scuderia Bandeiras/Caterham/Brand/gallery-03-top.jpg\")",
+      "Bash(cp \"D:/Downloads/20260414_scuderiabandeiras_alémdaspiastas_dudabairros-2987.jpg\" \"C:/Projetos ClaudeCode/Scuderia Bandeiras/Caterham/Brand/gallery-04-exhaust.jpg\")",
+      "Bash(cp \"D:/Downloads/20260414_scuderiabandeiras_alémdaspiastas_dudabairros-3012.jpg\" \"C:/Projetos ClaudeCode/Scuderia Bandeiras/Caterham/Brand/gallery-05-wheel.jpg\")"
+    ]
+  }
+}
