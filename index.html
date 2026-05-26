@@ -348,9 +348,13 @@
     @media (max-width:960px){ .exp-g { grid-template-columns:1fr; gap:48px; } }
 
     .exp-h2 {
-      font-size:clamp(38px, 5.5vw, 78px);
+      font-size:clamp(28px, 5.5vw, 78px);
       line-height:.95; letter-spacing:-.01em;
       color:var(--paper); margin-top:18px;
+    }
+    @media (max-width:600px) {
+      .exp-h2 { font-size:26px; line-height:1.05; }
+      .exp-h2 br { display:none; }
     }
     .exp-h2 em { color:var(--lime); font-style:italic; font-weight:700; }
 
@@ -757,7 +761,8 @@
        §REEL  VIDEO FULLSCREEN
     ════════════════════════════════════════════════════════ */
     #reel {
-      position:relative; width:100%; height:100vh;
+      position:relative; width:100%;
+      height:100vh; height:100svh;
       overflow:hidden; background:var(--ink);
     }
     #reel video {
@@ -770,6 +775,18 @@
       .reel-desk { display:none; }
       .reel-mob  { display:block; }
     }
+    .reel-sound {
+      position:absolute; bottom:28px; right:28px; z-index:10;
+      width:48px; height:48px; border-radius:50%;
+      background:rgba(1,12,14,.65);
+      border:1px solid rgba(251,251,252,.18);
+      color:var(--paper);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition:background .25s, border-color .25s;
+    }
+    .reel-sound:hover { background:rgba(202,211,2,.15); border-color:var(--lime); }
+    .reel-sound svg { width:20px; height:20px; pointer-events:none; }
 
     /* ── selection ───────────────────────────────────────────── */
     ::selection { background:var(--lime); color:var(--ink); }
@@ -796,12 +813,25 @@
 
 <!-- ══════════════════ REEL  VIDEO ══════════════════════ -->
 <section id="reel">
-  <video class="reel-desk" autoplay muted loop playsinline>
+  <video class="reel-desk" id="reelDesk" autoplay muted loop playsinline>
     <source src="video/desk.mp4" type="video/mp4">
   </video>
-  <video class="reel-mob" autoplay muted loop playsinline>
+  <video class="reel-mob" id="reelMob" autoplay muted loop playsinline>
     <source src="video/mobile.mp4" type="video/mp4">
   </video>
+  <button class="reel-sound" id="reelSound" aria-label="Ativar som">
+    <!-- muted icon -->
+    <svg id="iconMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+    <!-- sound icon (hidden) -->
+    <svg id="iconSound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+  </button>
 </section>
 
 <!-- ═══════════════════ §1  HERO ════════════════════════ -->
@@ -993,23 +1023,23 @@
 
     <div class="gal-grid">
       <div class="gal-cell gal-1" data-r="up">
-        <img src="Brand/IMAGENS PAGINA/gallery-01-side.jpg" alt="Caterham 7 em palco, lateral completa sob luzes verdes" loading="lazy">
+        <img src="Brand/imagens-carros/gallery-01-side.jpg" alt="Caterham 7 em palco, lateral completa sob luzes verdes" loading="lazy">
         <div class="gal-cap">CATERHAM 7 · ALÉM DAS PISTAS</div>
       </div>
       <div class="gal-cell gal-2 d1" data-r="up">
-        <img src="Brand/IMAGENS PAGINA/gallery-02-front.jpg" alt="Caterham 7 em vista 3/4 frontal sobre plataforma" loading="lazy">
+        <img src="Brand/imagens-carros/gallery-02-front.jpg" alt="Caterham 7 em vista 3/4 frontal sobre plataforma" loading="lazy">
         <div class="gal-cap">SCUDERIA BANDEIRAS × CATERHAM</div>
       </div>
       <div class="gal-cell gal-3 d2" data-r="up">
-        <img src="Brand/IMAGENS PAGINA/gallery-03-top.jpg" alt="Vista superior do cockpit e gaiola de proteção" loading="lazy">
+        <img src="Brand/imagens-carros/gallery-03-top.jpg" alt="Vista superior do cockpit e gaiola de proteção" loading="lazy">
         <div class="gal-cap">COCKPIT · GAIOLA DE PROTEÇÃO</div>
       </div>
       <div class="gal-cell gal-4 d3" data-r="up">
-        <img src="Brand/IMAGENS PAGINA/gallery-04-exhaust.jpg" alt="Detalhe traseiro do escapamento e suspensão" loading="lazy">
+        <img src="Brand/imagens-carros/gallery-04-exhaust.jpg" alt="Detalhe traseiro do escapamento e suspensão" loading="lazy">
         <div class="gal-cap">DETALHE · ESCAPAMENTO</div>
       </div>
       <div class="gal-cell gal-5 d4" data-r="up">
-        <img src="Brand/IMAGENS PAGINA/gallery-05-wheel.jpg" alt="Detalhe da roda com aro amarelo característico" loading="lazy">
+        <img src="Brand/imagens-carros/gallery-05-wheel.jpg" alt="Detalhe da roda com aro amarelo característico" loading="lazy">
         <div class="gal-cap">DETALHE · RODA DE PISTA</div>
       </div>
     </div>
@@ -1177,8 +1207,22 @@
     requestAnimationFrame(loop);
   })();
 
+  // video sound toggle
+  const reelSound = document.getElementById('reelSound');
+  const reelVideos = [document.getElementById('reelDesk'), document.getElementById('reelMob')];
+  const iconMuted = document.getElementById('iconMuted');
+  const iconSound = document.getElementById('iconSound');
+  let reelMuted = true;
+  reelSound.addEventListener('click', () => {
+    reelMuted = !reelMuted;
+    reelVideos.forEach(v => { if (v) { v.muted = reelMuted; v.volume = 1; } });
+    iconMuted.style.display = reelMuted ? '' : 'none';
+    iconSound.style.display = reelMuted ? 'none' : '';
+    reelSound.setAttribute('aria-label', reelMuted ? 'Ativar som' : 'Silenciar');
+  });
+
   // ring grows on interactives
-  document.querySelectorAll('a, button, .who-c, .gal-cell').forEach(el => {
+  document.querySelectorAll('a, button, .who-c, .gal-cell, .reel-sound').forEach(el => {
     el.addEventListener('mouseenter', () => {
       ring.style.width = '58px'; ring.style.height = '58px';
       ring.style.borderColor = 'rgba(202,211,2,.9)';
