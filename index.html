@@ -4079,19 +4079,18 @@
 
       if (i < activeIdx) {
         textOpacity = 0;
-        textY = -20;
+        textY = 0;
       } else if (i === activeIdx) {
-        /* Active text: stays at 100% until 85% of exit, then fades */
-        var exitFade = clamp((t - 0.85) / 0.15, 0, 1);
-        textOpacity = 1.0 - exitFade;
+        /* Active: visible at 100%, fades out between t=0.20 and t=0.40 */
+        textOpacity = 1.0 - clamp((t - 0.20) / 0.20, 0, 1);
         textY = 0;
       } else if (i === activeIdx + 1) {
-        /* Next text: appears fast — at 100% by t=0.25 */
-        textOpacity = clamp(t / 0.25, 0, 1);
-        textY = lerp(20, 0, clamp(t / 0.3, 0, 1));
+        /* Next: silent until t=0.55, then fades in to 100% by t=0.80 */
+        textOpacity = clamp((t - 0.55) / 0.25, 0, 1);
+        textY = lerp(18, 0, clamp((t - 0.55) / 0.25, 0, 1));
       } else {
         textOpacity = 0;
-        textY = 20;
+        textY = 18;
       }
 
       item.style.opacity   = textOpacity.toFixed(4);
