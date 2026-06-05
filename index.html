@@ -4078,19 +4078,23 @@
       var textOpacity, textY;
 
       if (i < activeIdx) {
+        /* already gone — slide up and invisible */
         textOpacity = 0;
-        textY = 0;
+        textY = -24;
       } else if (i === activeIdx) {
-        /* Active: visible at 100%, fades out between t=0.20 and t=0.40 */
-        textOpacity = 1.0 - clamp((t - 0.20) / 0.20, 0, 1);
-        textY = 0;
+        /* Active: slides up and fades OUT, completely gone by t=0.28 */
+        var outP = clamp(t / 0.28, 0, 1);
+        textOpacity = 1.0 - outP;
+        textY = lerp(0, -24, outP);
       } else if (i === activeIdx + 1) {
-        /* Next: silent until t=0.55, then fades in to 100% by t=0.80 */
-        textOpacity = clamp((t - 0.55) / 0.25, 0, 1);
-        textY = lerp(18, 0, clamp((t - 0.55) / 0.25, 0, 1));
+        /* Next: completely invisible until t=0.72, slides in from below */
+        var inP = clamp((t - 0.72) / 0.28, 0, 1);
+        textOpacity = inP;
+        textY = lerp(24, 0, inP);
       } else {
+        /* Not yet — waiting below */
         textOpacity = 0;
-        textY = 18;
+        textY = 24;
       }
 
       item.style.opacity   = textOpacity.toFixed(4);
