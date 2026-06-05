@@ -68,7 +68,9 @@
       font-family:'IBM Plex Sans Condensed', sans-serif;
       font-weight:700; text-transform:uppercase;
       line-height:.92; letter-spacing:-.005em;
+      text-wrap: balance;
     }
+    p { text-wrap: pretty; }
     .mono {
       font-family:'JetBrains Mono', monospace;
       font-weight:400; letter-spacing:.04em;
@@ -1001,106 +1003,119 @@
    SECTION 3: APPLE SCROLL STORYTELLING
    ============================================================ */
 
-/* ═══ SEÇÃO 3: SCROLL STORY — CINEMATIC FULLSCREEN ═══ */
+/* === SEÇÃO 3: SCROLL LOCK CINEMATIC === */
 
-#sec-custom { background: var(--ink); }
-
-.story-blk {
+/* Outer section: tall to consume scroll — page stays visually locked */
+#sec-custom {
   position: relative;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
+  height: 800vh; /* 700vh scroll range / 6 steps = ~117vh per image */
 }
 
-.story-blk[data-align='right'] { justify-content: flex-end; }
-.story-blk[data-align='left']  { justify-content: flex-start; }
+/* Sticky container: never moves visually */
+.story-lock {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+}
 
-/* Background image with Ken Burns */
-.story-blk-bg {
+/* Each image layer: stacked absolutely, z-index grows with index */
+.story-layer {
   position: absolute;
   inset: 0;
   overflow: hidden;
 }
-.story-blk-bg img {
+
+.story-layer-bg {
+  position: absolute;
+  inset: 0;
+}
+.story-layer-img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transform: scale(1.09);
-  transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform;
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
-.story-blk.story-vis .story-blk-bg img { transform: scale(1); }
 
-/* Directional veil */
-.story-blk-veil {
+/* Veil */
+.story-layer-veil {
   position: absolute; inset: 0; pointer-events: none;
-}
-.story-blk[data-align='left'] .story-blk-veil {
-  background:
-    linear-gradient(105deg, rgba(1,12,14,.92) 0%, rgba(1,12,14,.65) 45%, rgba(1,12,14,.08) 100%),
-    linear-gradient(180deg, transparent 40%, rgba(1,12,14,.7) 100%);
-}
-.story-blk[data-align='right'] .story-blk-veil {
-  background:
-    linear-gradient(-105deg, rgba(1,12,14,.92) 0%, rgba(1,12,14,.65) 45%, rgba(1,12,14,.08) 100%),
-    linear-gradient(180deg, transparent 40%, rgba(1,12,14,.7) 100%);
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.55) 30%,
+    rgba(0,0,0,.20) 60%,
+    rgba(0,0,0,.05) 100%
+  );
 }
 
-/* Content panel */
-.story-blk-content {
-  position: relative; z-index: 2;
-  padding: 0 80px 88px;
-  max-width: 640px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity .85s ease .35s, transform .85s cubic-bezier(.2,.8,.2,1) .35s;
+/* Content: always above veil (z-index > 2) — centered */
+.story-layer-content {
+  position: absolute; z-index: 10;
+  inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 80px;
+  will-change: opacity, transform;
 }
-.story-blk.story-vis .story-blk-content { opacity: 1; transform: translateY(0); }
-.story-blk[data-align='right'] .story-blk-content { padding: 0 80px 88px; }
 
-.story-blk-num {
+.story-layer-num {
   display: block;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; letter-spacing: .28em;
-  color: var(--lime); opacity: .7;
-  margin-bottom: 18px;
+  color: var(--lime); opacity: .8;
+  margin-bottom: 16px;
 }
-.story-blk-label { margin-bottom: 14px; display: block; }
-.story-blk-h {
+.story-layer-label { margin-bottom: 12px; display: block; }
+.story-layer-h {
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-weight: 700; text-transform: uppercase;
-  font-size: clamp(48px, 6.5vw, 100px);
+  font-size: clamp(52px, 6.5vw, 104px);
   line-height: .9; letter-spacing: -.02em;
-  color: var(--paper); margin-bottom: 24px;
+  color: var(--paper); margin-bottom: 22px;
+  text-shadow: 0 2px 24px rgba(0,0,0,.6);
 }
-.story-blk-h em { color: var(--lime); font-style: italic; }
-.story-blk-p {
+.story-layer-h em { color: var(--lime); font-style: italic; }
+.story-layer-p {
   font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: clamp(15px, 1.3vw, 18px); line-height: 1.65;
-  color: var(--paper-60); max-width: 420px;
+  font-size: clamp(15px, 1.2vw, 17px); line-height: 1.65;
+  color: rgba(251,251,252,.72); max-width: 440px;
 }
-.story-blk-line {
-  width: 40px; height: 2px; background: var(--lime);
-  margin-top: 28px;
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .6s cubic-bezier(.16,1,.3,1) .8s;
+.story-layer-line {
+  width: 40px; height: 2px;
+  background: var(--lime); margin-top: 24px;
 }
-.story-blk.story-vis .story-blk-line { transform: scaleX(1); }
+
+/* Progress dots */
+.story-lock-dots {
+  position: absolute; right: 28px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.story-lock-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(251,251,252,.3);
+  transition: background .3s, transform .3s;
+}
+.story-lock-dot.active {
+  background: var(--lime);
+  transform: scale(1.4);
+}
 
 @media (max-width: 768px) {
-  .story-blk { height: 100svh; align-items: flex-end; }
-  .story-blk-content { padding: 0 24px 72px; max-width: 100%; }
-  .story-blk[data-align='right'] .story-blk-content { padding: 0 24px 72px; }
-  .story-blk[data-align='left'] .story-blk-veil,
-  .story-blk[data-align='right'] .story-blk-veil {
-    background: linear-gradient(180deg, transparent 20%, rgba(1,12,14,.88) 70%, rgba(1,12,14,.97) 100%);
+  #sec-custom { height: 700vh; }
+  .story-layer-content {
+    padding: 24px 28px 60px;
   }
-  .story-blk-h { font-size: 42px; }
+  .story-layer-h { font-size: clamp(36px, 10vw, 48px); }
+  .story-lock-dots { display: none; }
 }
 
-/* ============================================================
-   SECTION 4: LABORATÓRIO DE PERFORMANCE
-   ============================================================ */
 
 .lab-section {
   background: var(--emerald-d);
@@ -3033,95 +3048,106 @@
      SECTION 3: APPLE SCROLL STORYTELLING
      ============================================================ -->
 <section id="sec-custom">
-  <div class="story-blk" data-align="left">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2489.jpg" alt="Customização" loading="eager">
+  <div class="story-lock" id="storyLock">
+    <div class="story-layer" style="z-index:10">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2489.jpg" alt="Customização" loading="eager">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">01</span>
+        <span class="label story-layer-label">Customização</span>
+        <h2 class="story-layer-h">ADAPTADA<br><em>PARA VOCÊ</em></h2>
+        <p class="story-layer-p">Cada edição é moldada ao perfil dos participantes, objetivos da empresa e formato do evento.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">01</span>
-      <span class="label story-blk-label">Customização</span>
-      <h2 class="story-blk-h">Adaptada<br><em>para você</em></h2>
-      <p class="story-blk-p">Cada edição é moldada ao perfil dos participantes, objetivos da empresa e formato do evento.</p>
-      <div class="story-blk-line"></div>
+    <div class="story-layer" style="z-index:20">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2967.jpg" alt="Ativações" loading="lazy">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">02</span>
+        <span class="label story-layer-label">Ativações</span>
+        <h2 class="story-layer-h">INSPIRADAS NO<br><em>AUTOMOBILISMO</em></h2>
+        <p class="story-layer-p">Experiências criadas para aproximar equipes da dinâmica das equipes de corrida.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-  </div>
-  <div class="story-blk" data-align="right">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2967.jpg" alt="Ativações" loading="lazy">
+    <div class="story-layer" style="z-index:30">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2979.jpg" alt="Caterham Seven" loading="lazy">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">03</span>
+        <span class="label story-layer-label">Caterham Seven</span>
+        <h2 class="story-layer-h">EXPERIÊNCIA<br><em>CATERHAM</em></h2>
+        <p class="story-layer-p">Contato direto com o Caterham Seven — precisão, leveza e reação imediata ao comando.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">02</span>
-      <span class="label story-blk-label">Ativações</span>
-      <h2 class="story-blk-h">Inspiradas no<br><em>automobilismo</em></h2>
-      <p class="story-blk-p">Experiências criadas para aproximar equipes da dinâmica presente nas equipes de corrida.</p>
-      <div class="story-blk-line"></div>
+    <div class="story-layer" style="z-index:40">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-3027.jpg" alt="Pilotos Profissionais" loading="lazy">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">04</span>
+        <span class="label story-layer-label">Pilotos Profissionais</span>
+        <h2 class="story-layer-h">AO LADO DE QUEM<br><em>VIVE O LIMITE</em></h2>
+        <p class="story-layer-p">Interação com nomes que construíram carreiras dentro do automobilismo nacional de alto nível.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-  </div>
-  <div class="story-blk" data-align="left">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2979.jpg" alt="Caterham Seven" loading="lazy">
+    <div class="story-layer" style="z-index:50">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-4926.jpg" alt="Networking" loading="lazy">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">05</span>
+        <span class="label story-layer-label">Networking</span>
+        <h2 class="story-layer-h">RELACIONAMENTO<br><em>GENUÍNO</em></h2>
+        <p class="story-layer-p">Um ambiente onde conexões surgem naturalmente a partir das experiências vividas na pista.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">03</span>
-      <span class="label story-blk-label">Caterham Seven</span>
-      <h2 class="story-blk-h">Experiência<br><em>Caterham</em></h2>
-      <p class="story-blk-p">Contato direto com o Caterham Seven — precisão, leveza e reação imediata ao comando.</p>
-      <div class="story-blk-line"></div>
+    <div class="story-layer" style="z-index:60">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-5071.jpg" alt="Programação" loading="lazy">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">06</span>
+        <span class="label story-layer-label">Programação</span>
+        <h2 class="story-layer-h">PROGRAMAÇÃO<br><em>FLEXÍVEL</em></h2>
+        <p class="story-layer-p">Formato adaptado para os objetivos estratégicos da sua empresa e o perfil do seu time.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-  </div>
-  <div class="story-blk" data-align="right">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-3027.jpg" alt="Pilotos Profissionais" loading="lazy">
+    <div class="story-layer" style="z-index:70">
+      <div class="story-layer-bg">
+        <img class="story-layer-img" src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-5079.jpg" alt="Experiências" loading="lazy">
+      </div>
+      <div class="story-layer-veil"></div>
+      <div class="story-layer-content">
+        <span class="story-layer-num mono">07</span>
+        <span class="label story-layer-label">Experiências</span>
+        <h2 class="story-layer-h">MOMENTOS<br><em>EXCLUSIVOS</em></h2>
+        <p class="story-layer-p">Para convidados, clientes e equipes — uma jornada que transforma perspectivas e resultados.</p>
+        <div class="story-layer-line"></div>
+      </div>
     </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">04</span>
-      <span class="label story-blk-label">Pilotos Profissionais</span>
-      <h2 class="story-blk-h">Ao lado de quem<br><em>vive o limite</em></h2>
-      <p class="story-blk-p">Interação com nomes que construíram carreiras dentro do automobilismo nacional de alto nível.</p>
-      <div class="story-blk-line"></div>
-    </div>
-  </div>
-  <div class="story-blk" data-align="left">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-4926.jpg" alt="Networking" loading="lazy">
-    </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">05</span>
-      <span class="label story-blk-label">Networking</span>
-      <h2 class="story-blk-h">Relacionamento<br><em>genuíno</em></h2>
-      <p class="story-blk-p">Um ambiente onde conexões surgem naturalmente a partir das experiências vividas na pista.</p>
-      <div class="story-blk-line"></div>
-    </div>
-  </div>
-  <div class="story-blk" data-align="right">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-5071.jpg" alt="Programação" loading="lazy">
-    </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">06</span>
-      <span class="label story-blk-label">Programação</span>
-      <h2 class="story-blk-h">Programação<br><em>flexível</em></h2>
-      <p class="story-blk-p">Formato adaptado para os objetivos estratégicos da sua empresa e o perfil do seu time.</p>
-      <div class="story-blk-line"></div>
-    </div>
-  </div>
-  <div class="story-blk" data-align="left">
-    <div class="story-blk-bg">
-      <img src="Brand/Imagem/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-5079.jpg" alt="Experiências" loading="lazy">
-    </div>
-    <div class="story-blk-veil"></div>
-    <div class="story-blk-content">
-      <span class="story-blk-num mono">07</span>
-      <span class="label story-blk-label">Experiências</span>
-      <h2 class="story-blk-h">Momentos<br><em>exclusivos</em></h2>
-      <p class="story-blk-p">Para convidados, clientes e equipes — uma jornada que transforma perspectivas e resultados.</p>
-      <div class="story-blk-line"></div>
+    <div class="story-lock-dots" id="storyDots">
+    <div class="story-lock-dot" data-dot="0"></div>
+    <div class="story-lock-dot" data-dot="1"></div>
+    <div class="story-lock-dot" data-dot="2"></div>
+    <div class="story-lock-dot" data-dot="3"></div>
+    <div class="story-lock-dot" data-dot="4"></div>
+    <div class="story-lock-dot" data-dot="5"></div>
+    <div class="story-lock-dot" data-dot="6"></div>
     </div>
   </div>
 </section>
@@ -3984,30 +4010,88 @@
 })();
 
 
-/* ============================================================
-   SECTION 3: SCROLL STORYTELLING — IntersectionObserver
-   ============================================================ */
-(function () {
-  var section = document.getElementById('sec-custom');
-  if (!section) return;
+/* -- Scroll Lock Cinematic (sec-custom) -- */
+(function() {
+  var section  = document.getElementById('sec-custom');
+  var layers   = section ? section.querySelectorAll('.story-layer') : [];
+  var dotEls   = section ? section.querySelectorAll('.story-lock-dot') : [];
+  var n        = layers.length;
+  if (!n) return;
 
-  var blocks = section.querySelectorAll('.
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
 
-  // ── Story Blocks (cinematic fullscreen, Ken Burns + slide-up) ──
-  (function() {
-    var blocks = document.querySelectorAll('.story-blk');
-    if (!blocks.length) return;
-    var sio = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('story-vis');
-        }
+  var lastActive = -1;
+
+  function update() {
+    var vh        = window.innerHeight;
+    var rect      = section.getBoundingClientRect();
+    var outerH    = section.offsetHeight;
+    var scrollRange = Math.max(1, outerH - vh);
+
+    /* progress: 0 → 1 across the full 700vh */
+    var progress  = clamp(-rect.top / scrollRange, 0, 1);
+
+    /* map to 0 → (n-1) */
+    var step      = progress * (n - 1);
+    var activeIdx = Math.min(Math.floor(step), n - 1);
+    var t         = step - activeIdx; /* 0→1 transition progress */
+
+    layers.forEach(function(layer, i) {
+      var img  = layer.querySelector('.story-layer-img');
+      var cont = layer.querySelector('.story-layer-content');
+      if (!img) return;
+
+      var imgScale, imgOpacity, contOpacity, contY;
+
+      if (i < activeIdx) {
+        /* fully exited — behind, scales down, nearly invisible */
+        imgScale    = 0.93;
+        imgOpacity  = 0.18;
+        contOpacity = 0;
+        contY       = 0;
+      } else if (i === activeIdx) {
+        /* active, transitioning OUT */
+        imgScale    = lerp(1.0,  0.93, t);
+        imgOpacity  = lerp(1.0,  0.18, t);
+        contOpacity = lerp(1.0,  0.0,  clamp((t - 0.78) / 0.22, 0, 1));
+        contY       = 0;
+      } else if (i === activeIdx + 1) {
+        /* next layer, entering ON TOP (higher z-index) */
+        imgScale    = lerp(1.07, 1.0,  t);
+        imgOpacity  = lerp(0.0,  1.0,  t);
+        /* text appears quickly once image is 40% in */
+        contOpacity = clamp((t - 0.0) / 0.5, 0, 1);
+        contY       = lerp(24,   0,    clamp(t / 0.5, 0, 1));
+      } else {
+        /* not yet reached — hidden, ready behind */
+        imgScale    = 1.07;
+        imgOpacity  = 0.0;
+        contOpacity = 0;
+        contY       = 36;
+      }
+
+      img.style.transform  = 'scale(' + imgScale.toFixed(4)  + ')';
+      img.style.opacity    = imgOpacity.toFixed(4);
+      if (cont) {
+        cont.style.opacity   = contOpacity.toFixed(4);
+        cont.style.transform = 'translateY(' + contY.toFixed(1) + 'px)';
+      }
+    });
+
+    /* Update dots */
+    if (activeIdx !== lastActive) {
+      dotEls.forEach(function(d, i) {
+        d.classList.toggle('active', i === activeIdx);
       });
-    }, { threshold: 0.25 });
-    blocks.forEach(function(b) { sio.observe(b); });
-  })();
+      lastActive = activeIdx;
+    }
+  }
 
-
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
 
   // ── Seções 5-8: Ativações + Performance + Pressão + Pessoas
 /* ── Section 7: pressure items sequential reveal ── */
