@@ -4104,18 +4104,10 @@ footer {
   .tb-sub { font-size: clamp(.95rem, 4vw, 1.2rem); }
 }
 
-/* ── Mobile: colapsa scroll story em hero estático com autoplay ── */
+/* ── Mobile: scroll story mais curto (280vh vs 500vh desktop) ── */
 @media (max-width: 768px) {
   .tb-scroll-story {
-    height: 100svh;
-  }
-  .tb-scroll-sticky {
-    position: relative;
-    height: 100svh;
-  }
-  .tb-reveal {
-    opacity: 1 !important;
-    transition: none !important;
+    height: 280vh;
   }
 }
 
@@ -4795,8 +4787,7 @@ footer {
    TB REDESIGN — §6 Ativações: Mobile carousel refinements
 ═══════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  /* Swipe-only — remove arrows */
-  .atv-mob-carousel .atv-arrow { display: none; }
+  .atv-mob-carousel .atv-arrow { display: flex; }
 
   /* Better slide proportions for narrow screens */
   .atv-slide { aspect-ratio: 3 / 4; }

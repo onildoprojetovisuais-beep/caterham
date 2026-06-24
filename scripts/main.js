@@ -398,23 +398,24 @@
   activate(0);
 })();
 
-/* ── Ativações: mobile carousel — scroll nativo + setas ── */
+/* ── Ativações: mobile carousel — transform + swipe + setas ── */
 (function () {
-  var wrap  = document.querySelector('.atv-scroll-wrap');
-  var track = document.querySelector('.atv-scroll-track');
-  var prev  = document.getElementById('atvPrev');
-  var next  = document.getElementById('atvNext');
-  var dotsC = document.getElementById('atvDots');
-  if (!wrap || !track) return;
+  var track   = document.getElementById('atvTrack');
+  var prev    = document.getElementById('atvPrev');
+  var next    = document.getElementById('atvNext');
+  var dotsC   = document.getElementById('atvDots');
+  var counter = document.getElementById('atvCounter');
+  if (!track) return;
 
-  var cards   = Array.from(track.querySelectorAll('.atv-scroll-card'));
-  var total   = cards.length;
+  var slides  = Array.from(track.querySelectorAll('.atv-slide'));
+  var total   = slides.length;
   var current = 0;
+  var startX  = 0;
 
-  var dots = cards.map(function (_, i) {
+  var dots = slides.map(function (_, i) {
     var d = document.createElement('button');
     d.className = 'atv-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Ir para slide ' + (i + 1));
+    d.setAttribute('aria-label', 'Ir para ativação ' + (i + 1));
     d.addEventListener('click', function () { goTo(i); });
     if (dotsC) dotsC.appendChild(d);
     return d;
@@ -422,23 +423,22 @@
 
   function goTo(idx) {
     current = ((idx % total) + total) % total;
-    var cardWidth = cards[0].offsetWidth + 12; /* 12 = gap */
-    wrap.scrollTo({ left: current * cardWidth, behavior: 'smooth' });
+    track.style.transform = 'translateX(' + (-current * 100) + '%)';
     dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    if (counter) counter.textContent = ('0' + (current + 1)).slice(-2) + ' / 0' + total;
   }
-
-  /* sync dot on native swipe scroll */
-  wrap.addEventListener('scroll', function () {
-    var cardWidth = cards[0].offsetWidth + 12;
-    var idx = Math.round(wrap.scrollLeft / cardWidth);
-    if (idx !== current) {
-      current = idx;
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
-    }
-  }, { passive: true });
 
   if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
   if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+  track.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 48) goTo(dx < 0 ? current + 1 : current - 1);
+  }, { passive: true });
 
   goTo(0);
 })();
@@ -805,8 +805,9 @@
 })();
 
 // ── TB Hero Scroll Story ─────────────────────────────────────
-// Desktop: scroll DO usuário é o playhead — vídeo nunca toca sozinho.
-// Mobile (≤768px): autoplay+loop, todo o texto visível de imediato.
+// O scroll do usuário é o playhead em qualquer dispositivo.
+// No mobile: scroll story encurtado (280vh via CSS) + priming iOS
+// (play→pause desbloqueia currentTime seeking no Safari/iOS).
 (function() {
   var story = document.getElementById('tbScrollStory');
   var video = document.getElementById('tbHeroVideo');
@@ -822,21 +823,8 @@
     return { el: document.querySelector(r.sel), inAt: r.inAt };
   });
 
-  // Mobile: autoplay loop, texto todo visível
-  if (window.innerWidth <= 768) {
-    video.loop = true;
-    video.play().catch(function() {});
-    items.forEach(function(item) {
-      if (item.el) item.el.classList.add('visible');
-    });
-    return;
-  }
-
-  // Desktop: scroll-driven playhead
-  video.pause();
-  video.currentTime = 0;
-
   var raf = null;
+  var primed = false;
 
   function getScrollProg() {
     var rect       = story.getBoundingClientRect();
@@ -855,16 +843,39 @@
     });
   }
 
+  // iOS/mobile: play→pause uma vez para desbloquear seeking de currentTime
+  function prime() {
+    if (primed) return;
+    primed = true;
+    var p = video.play();
+    if (p && p.then) {
+      p.then(function() {
+        video.pause();
+        tick();
+      }).catch(function() { tick(); });
+    } else {
+      video.pause();
+      tick();
+    }
+  }
+
   window.addEventListener('scroll', function() {
+    if (!primed) prime();
     if (!raf) raf = requestAnimationFrame(tick);
   }, { passive: true });
 
-  video.addEventListener('loadeddata', function() {
+  // Inicialização: no desktop pode pausar direto; no mobile aguarda scroll
+  if (video.readyState >= 2) {
     video.pause();
     video.currentTime = 0;
-  }, { once: true });
-
-  tick();
+    tick();
+  } else {
+    video.addEventListener('loadeddata', function() {
+      video.pause();
+      video.currentTime = 0;
+      tick();
+    }, { once: true });
+  }
 }());
 
 /* ── Premium price cards: 3D magnetic tilt + spotlight ── */
