@@ -1,0 +1,5 @@
+{
+  "routes": [
+    { "src": "/team-building", "dest": "/pages/team-building.html" }
+  ]
+}

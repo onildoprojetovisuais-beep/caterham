@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Building — Scuderia Bandeiras × Caterham</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/components.css">
+  <link rel="stylesheet" href="/styles/animations.css">
+</head>
+<body class="page-tb">
+
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+<div class="progress" id="progress"></div>
+
+<!-- ═══════════════════ HEADER ═════════════════════════ -->
+<header class="topbar" id="topbar">
+  <div class="topbar-l">
+    <img src="/assets/images/brand/LOGO WHITE.png" alt="Scuderia Bandeiras × Caterham Motorsport Brasil">
+  </div>
+  <div class="topbar-nav">
+    <a href="/">Race Experience</a>
+    <a href="/team-building" class="active">Team Building</a>
+  </div>
+  <div class="topbar-r">
+    <span class="topbar-meta">TEAM BUILDING · <span>SCUDERIA BANDEIRAS</span></span>
+    <a href="https://wa.me/5515998570854" class="btn btn-lime" target="_blank" rel="noopener">
+      <span class="flag"></span>Falar com o time
+    </a>
+  </div>
+  <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ═══════════════════ MOBILE NAV ════════════════════ -->
+<div class="mob-nav" id="mobNav">
+  <nav class="mob-nav-links">
+    <a href="/" class="mob-nav-link">Race Experience</a>
+    <a href="/team-building" class="mob-nav-link active">Team Building</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════ §1 HERO CINEMATOGRÁFICO ════════════════════════ -->
+<div class="tb-scroll-story" id="tbScrollStory">
+  <div class="tb-scroll-sticky">
+
+    <video
+      id="tbHeroVideo"
+      class="tb-video"
+      src="/video/video-topo-team-bulding.mp4"
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+
+    <div class="tb-veil"></div>
+
+    <div class="tb-texts">
+      <div class="tb-hero-stack">
+
+        <!-- Momento 1 — título principal, sempre presente -->
+        <div class="tb-reveal tb-reveal-1">
+          <p class="tb-kicker">RACE EXPERIENCE</p>
+          <h1 class="tb-h1">TEAM<br><span class="lime">BUILDING</span></h1>
+        </div>
+
+        <!-- Momento 2 — subtítulo fade in sobre o título -->
+        <div class="tb-reveal tb-reveal-2">
+          <p class="tb-sub">Um ambiente fora do comum para desenvolver<br>o que importa dentro das empresas.</p>
+        </div>
+
+        <!-- Momento 3 — CTA fade in mantendo tudo visível -->
+        <div class="tb-reveal tb-reveal-3">
+          <a href="https://wa.me/5515998570854" class="btn btn-lime tb-cta-hero" target="_blank" rel="noopener">
+            <span class="flag"></span>FALAR COM UM ESPECIALISTA
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ §2 O QUE É ═════════════════════ -->
+<section id="sec-tb-what">
+  <div class="tb-what-split">
+    <div class="tb-what-text-col">
+      <span class="label" data-r>O QUE É</span>
+      <h2 class="tb-what-h2" data-r>Isso não é treinamento.<br>É uma experiência<br>que gera reflexão.</h2>
+      <div class="tb-what-body" data-r>
+        <p>Essa distinção aparece em todas as conversas que tivemos com quem já viveu a Race Experience no formato&nbsp;corporativo.</p>
+        <p>O automobilismo cria situações reais. Pressão real. Decisões&nbsp;reais.</p>
+        <p>O que acontece na pista revela comportamentos que nenhuma sala de treinamento consegue&nbsp;provocar.</p>
+      </div>
+      <blockquote class="tb-what-pullquote" data-r>
+        A Race Experience cria um ambiente onde esses desafios aparecem naturalmente e onde cada participante pode observar, vivenciar e levar de volta para o trabalho uma perspectiva que não existia&nbsp;antes.
+      </blockquote>
+    </div>
+    <div class="tb-what-img-col" data-r="right">
+      <img src="/assets/images/sections/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-4926.jpg" alt="Race Experience — experiência na pista" loading="lazy">
+      <div class="tb-what-img-veil"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §3 LABORATÓRIO DE PERFORMANCE ═════════════════════ -->
+<section id="sec-lab" class="lab-section">
+  <div class="wrap lab-wrap">
+
+    <!-- Image column -->
+    <div class="lab-media">
+      <div class="lab-img-primary" data-r>
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-4/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-0740.jpg" alt="Laboratório de Performance, equipe em ação" loading="lazy">
+      </div>
+      <div class="lab-img-accent" data-r data-delay="150">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-4/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-1000.jpg" alt="Laboratório de Performance, detalhe" loading="lazy">
+      </div>
+    </div>
+
+    <!-- Text column -->
+    <div class="lab-content">
+      <span class="label lab-label" data-r>LABORATÓRIO DE PERFORMANCE</span>
+      <h2 class="lab-headline" data-r data-delay="80">UM LABORATÓRIO<br>DE PERFORMANCE<br>EM EQUIPE</h2>
+      <p class="lab-body" data-r data-delay="160">Inspirada na dinâmica das equipes de corrida, a programação foi desenhada para demonstrar como pequenos ajustes de comunicação, coordenação e execução impactam diretamente os resultados.</p>
+
+      <p class="lab-body" data-r data-delay="200"><strong>Temas trabalhados</strong></p>
+
+      <ul class="lab-bullets" data-r data-delay="260">
+        <li class="lab-bullet">
+          <span class="lab-bullet-icon" aria-hidden="true"></span>
+          <span>Comunicação e alinhamento entre equipes</span>
+        </li>
+        <li class="lab-bullet">
+          <span class="lab-bullet-icon" aria-hidden="true"></span>
+          <span>Liderança na prática</span>
+        </li>
+        <li class="lab-bullet">
+          <span class="lab-bullet-icon" aria-hidden="true"></span>
+          <span>Tomada de decisão sob pressão</span>
+        </li>
+        <li class="lab-bullet">
+          <span class="lab-bullet-icon" aria-hidden="true"></span>
+          <span>Colaboração e confiança</span>
+        </li>
+        <li class="lab-bullet">
+          <span class="lab-bullet-icon" aria-hidden="true"></span>
+          <span>Foco na execução</span>
+        </li>
+        <li class="lab-bullet">
+          <span class="lab-bullet-icon" aria-hidden="true"></span>
+          <span>Busca por alta performance</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ §4 COMO A PERFORMANCE GANHA FORMA ═════════════════════ -->
+<section id="sec-tb-dynamics">
+  <div class="wrap">
+    <span class="label" data-r>PROGRAMAÇÃO</span>
+    <h2 data-r>Como a performance ganha forma na prática</h2>
+    <p data-r>A programação foi desenhada para transformar conceitos que normalmente ficam restritos a apresentações em experiências reais.</p>
+    <div class="tb-dyn-grid" data-r>
+      <div class="tb-dyn-row">
+        <span class="tb-dyn-index">01</span>
+        <div class="tb-dyn-content">
+          <h3>Comunicação sob pressão</h3>
+          <p>Atividades que demonstram como informação, alinhamento e clareza impactam resultados.</p>
+        </div>
+      </div>
+      <div class="tb-dyn-row">
+        <span class="tb-dyn-index">02</span>
+        <div class="tb-dyn-content">
+          <h3>Tomada de decisão</h3>
+          <p>Desafios que exigem leitura rápida de cenário e capacidade de reação.</p>
+        </div>
+      </div>
+      <div class="tb-dyn-row">
+        <span class="tb-dyn-index">03</span>
+        <div class="tb-dyn-content">
+          <h3>Trabalho em equipe</h3>
+          <p>Dinâmicas inspiradas nas operações do automobilismo profissional.</p>
+        </div>
+      </div>
+      <div class="tb-dyn-row">
+        <span class="tb-dyn-index">04</span>
+        <div class="tb-dyn-content">
+          <h3>Liderança na prática</h3>
+          <p>Momentos que mostram como decisões influenciam diretamente a performance coletiva.</p>
+        </div>
+      </div>
+      <div class="tb-dyn-row">
+        <span class="tb-dyn-index">05</span>
+        <div class="tb-dyn-content">
+          <h3>Experiência Caterham</h3>
+          <p>Um ambiente onde preparação, execução e capacidade de resposta caminham&nbsp;juntas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §5 O QUE ACONTECE QUANDO A PRESSÃO É REAL ═════════════════════ -->
+<section id="sec-pressure">
+  <div class="pressure-img-col">
+    <img src="/assets/images/sections/se%C3%A7%C3%A3o-7/o-que-acontece-quando-a-pressao-e-real.jpg" alt="O que acontece quando a pressão é real" loading="lazy">
+  </div>
+  <div class="pressure-content">
+    <p class="pressure-label mono">O automobilismo é um ambiente onde preparação, foco e tomada de decisão fazem diferença a cada segundo.</p>
+    <h2 class="pressure-h2">O que acontece<br>quando a pressão<br>é real</h2>
+    <ul class="pressure-list" role="list" aria-label="Reflexões sobre pressão">
+      <li class="pressure-item">Como liderar em cenários de pressão.</li>
+      <li class="pressure-item">Como manter equipes alinhadas.</li>
+      <li class="pressure-item">Como tomar decisões com rapidez sem perder qualidade de execução.</li>
+      <li class="pressure-item">Como transformar estratégia em resultado.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ §6 ATIVAÇÕES ═════════════════════ -->
+<section id="sec-ativacoes">
+  <div class="wrap atv-head" data-r="up">
+    <span class="label">Ativações</span>
+    <h2 class="atv-h2">Nossas<br>ativações</h2>
+    <p class="atv-intro">Cada ativação aproxima os participantes da dinâmica das equipes de corrida, transformando conceitos em vivências práticas.</p>
+  </div>
+
+  <!-- Desktop: showcase com tabs -->
+  <div class="atv-showcase" role="region" aria-label="Ativações">
+
+    <nav class="atv-tabs" role="tablist" aria-label="Selecione uma ativação">
+
+      <button class="atv-tab atv-tab--active" data-tab="0" role="tab" aria-selected="true" aria-controls="atv-panel-0" id="atv-tab-0">
+        <span class="atv-tab-num mono">01</span>
+        <span class="atv-tab-body">
+          <span class="atv-tab-name">Reflexos Rápidos</span>
+          <span class="atv-tab-sub">Velocidade de reação</span>
+        </span>
+        <svg class="atv-tab-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button class="atv-tab" data-tab="1" role="tab" aria-selected="false" aria-controls="atv-panel-1" id="atv-tab-1">
+        <span class="atv-tab-num mono">02</span>
+        <span class="atv-tab-body">
+          <span class="atv-tab-name">Análise de Painel</span>
+          <span class="atv-tab-sub">Tomada de decisão</span>
+        </span>
+        <svg class="atv-tab-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button class="atv-tab" data-tab="2" role="tab" aria-selected="false" aria-controls="atv-panel-2" id="atv-tab-2">
+        <span class="atv-tab-num mono">03</span>
+        <span class="atv-tab-body">
+          <span class="atv-tab-name">Instrução e Ação</span>
+          <span class="atv-tab-sub">Trabalho em equipe</span>
+        </span>
+        <svg class="atv-tab-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button class="atv-tab" data-tab="3" role="tab" aria-selected="false" aria-controls="atv-panel-3" id="atv-tab-3">
+        <span class="atv-tab-num mono">04</span>
+        <span class="atv-tab-body">
+          <span class="atv-tab-name">Pit Stop Challenge</span>
+          <span class="atv-tab-sub">Execução coordenada</span>
+        </span>
+        <svg class="atv-tab-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button class="atv-tab" data-tab="4" role="tab" aria-selected="false" aria-controls="atv-panel-4" id="atv-tab-4">
+        <span class="atv-tab-num mono">05</span>
+        <span class="atv-tab-body">
+          <span class="atv-tab-name">Volta Rápida Caterham</span>
+          <span class="atv-tab-sub">Experiência completa</span>
+        </span>
+        <svg class="atv-tab-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+    </nav>
+
+    <div class="atv-panels">
+
+      <div class="atv-panel atv-panel--active" id="atv-panel-0" role="tabpanel" aria-labelledby="atv-tab-0">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/reflexos-rapidos.jpg" alt="Reflexos Rápidos" loading="eager">
+        <div class="atv-panel-veil"></div>
+        <div class="atv-panel-content">
+          <span class="atv-panel-num mono">01 / 05</span>
+          <h3 class="atv-panel-name">Reflexos Rápidos</h3>
+          <p class="atv-panel-desc">Uma dinâmica que desafia velocidade de reação, leitura de cenário e capacidade de resposta sob pressão real.</p>
+        </div>
+      </div>
+
+      <div class="atv-panel" id="atv-panel-1" role="tabpanel" aria-labelledby="atv-tab-1">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/analise-de-painel.jpg" alt="Análise de Painel" loading="lazy">
+        <div class="atv-panel-veil"></div>
+        <div class="atv-panel-content">
+          <span class="atv-panel-num mono">02 / 05</span>
+          <h3 class="atv-panel-name">Análise de Painel</h3>
+          <p class="atv-panel-desc">Os participantes interpretam dados em tempo real para tomar decisões estratégicas rápidas e precisas.</p>
+        </div>
+      </div>
+
+      <div class="atv-panel" id="atv-panel-2" role="tabpanel" aria-labelledby="atv-tab-2">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/instrucao-e-acao.png" alt="Crazy Kart" loading="lazy">
+        <div class="atv-panel-veil"></div>
+        <div class="atv-panel-content">
+          <span class="atv-panel-num mono">03 / 05</span>
+          <h3 class="atv-panel-name">Instrução e Ação</h3>
+          <p class="atv-panel-desc">Coordenação, comunicação e trabalho em equipe num ambiente competitivo e descontraído.</p>
+        </div>
+      </div>
+
+      <div class="atv-panel" id="atv-panel-3" role="tabpanel" aria-labelledby="atv-tab-3">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/pit-stop-challenge.jpg" alt="Pit Stop Challenge" loading="lazy">
+        <div class="atv-panel-veil"></div>
+        <div class="atv-panel-content">
+          <span class="atv-panel-num mono">04 / 05</span>
+          <h3 class="atv-panel-name">Pit Stop Challenge</h3>
+          <p class="atv-panel-desc">Alinhamento, colaboração e execução coordenada em tempo limitado — inspirado nos boxes profissionais da F1.</p>
+        </div>
+      </div>
+
+      <div class="atv-panel" id="atv-panel-4" role="tabpanel" aria-labelledby="atv-tab-4">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/volta-rapida-caterham.jpg" alt="Volta Rápida Caterham" loading="lazy">
+        <div class="atv-panel-veil"></div>
+        <div class="atv-panel-content">
+          <span class="atv-panel-num mono">05 / 05</span>
+          <h3 class="atv-panel-name">Volta Rápida Caterham</h3>
+          <p class="atv-panel-desc">Preparação, execução e capacidade de resposta se encontram num único percurso de alta adrenalina.</p>
+        </div>
+      </div>
+
+    </div><!-- /atv-panels -->
+
+  </div><!-- /atv-showcase -->
+
+  <!-- Mobile: carrossel horizontal com snap -->
+  <div class="atv-mob-carousel" id="atvCarousel" role="region" aria-label="Ativações">
+    <div class="atv-mob-track" id="atvTrack">
+
+      <div class="atv-slide" role="group" aria-label="Ativação 1 de 5">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/reflexos-rapidos.jpg" alt="Reflexos Rápidos" loading="lazy">
+        <div class="atv-slide-veil"></div>
+        <span class="atv-slide-num mono">01</span>
+        <div class="atv-slide-info">
+          <h3 class="atv-slide-name">Reflexos Rápidos</h3>
+          <p class="atv-slide-desc">Uma dinâmica que desafia velocidade de reação, leitura de cenário e capacidade de resposta.</p>
+        </div>
+      </div>
+
+      <div class="atv-slide" role="group" aria-label="Ativação 2 de 5">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/analise-de-painel.jpg" alt="Análise de Painel" loading="lazy">
+        <div class="atv-slide-veil"></div>
+        <span class="atv-slide-num mono">02</span>
+        <div class="atv-slide-info">
+          <h3 class="atv-slide-name">Análise de Painel</h3>
+          <p class="atv-slide-desc">Os participantes interpretam dados rapidamente para tomar decisões estratégicas.</p>
+        </div>
+      </div>
+
+      <div class="atv-slide" role="group" aria-label="Ativação 3 de 5">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/instrucao-e-acao.png" alt="Crazy Kart" loading="lazy">
+        <div class="atv-slide-veil"></div>
+        <span class="atv-slide-num mono">03</span>
+        <div class="atv-slide-info">
+          <h3 class="atv-slide-name">Instrução e Ação</h3>
+          <p class="atv-slide-desc">Coordenação, comunicação e trabalho em equipe num ambiente competitivo.</p>
+        </div>
+      </div>
+
+      <div class="atv-slide" role="group" aria-label="Ativação 4 de 5">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/pit-stop-challenge.jpg" alt="Pit Stop Challenge" loading="lazy">
+        <div class="atv-slide-veil"></div>
+        <span class="atv-slide-num mono">04</span>
+        <div class="atv-slide-info">
+          <h3 class="atv-slide-name">Pit Stop Challenge</h3>
+          <p class="atv-slide-desc">Exige alinhamento, colaboração e execução coordenada em tempo limitado.</p>
+        </div>
+      </div>
+
+      <div class="atv-slide" role="group" aria-label="Ativação 5 de 5">
+        <img src="/assets/images/sections/se%C3%A7%C3%A3o-5/volta-rapida-caterham.jpg" alt="Volta Rápida Caterham" loading="lazy">
+        <div class="atv-slide-veil"></div>
+        <span class="atv-slide-num mono">05</span>
+        <div class="atv-slide-info">
+          <h3 class="atv-slide-name">Volta Rápida Caterham</h3>
+          <p class="atv-slide-desc">Preparação, execução e capacidade de resposta se encontram.</p>
+        </div>
+      </div>
+
+    </div><!-- /atv-mob-track -->
+
+    <button class="atv-arrow atv-arrow-prev" id="atvPrev" aria-label="Ativação anterior">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="atv-arrow atv-arrow-next" id="atvNext" aria-label="Próxima ativação">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div class="atv-carousel-footer">
+      <div class="atv-dots" id="atvDots"></div>
+      <span class="atv-counter mono" id="atvCounter">01 / 05</span>
+    </div>
+  </div><!-- /atv-mob-carousel -->
+</section>
+
+<!-- ═══════════════════ §7 AMBIENTE ═════════════════════ -->
+<section id="sec-people">
+  <div class="ppl-img-col" data-r="left">
+    <img src="/assets/images/sections/se%C3%A7%C3%A3o-4/ambiente.jpg" alt="Race Experience, pessoas" loading="lazy">
+  </div>
+  <div class="ppl-text-col">
+    <div class="ppl-box" data-r="right">
+      <div class="ppl-kicker">
+        <div class="ppl-kicker-line"></div>
+        <span class="label">AMBIENTE</span>
+        <div class="ppl-kicker-line"></div>
+      </div>
+      <h2 class="ppl-headline">Um ambiente que<br>aproxima <em>pessoas.</em></h2>
+      <div class="ppl-divider"></div>
+      <p class="ppl-body">Um ambiente onde experiências são trocadas naturalmente, sem roteiros prontos e sem interações forçadas.</p>
+      <p class="ppl-body">As conversas surgem a partir do que foi vivido durante o dia. Pessoas que convivem com responsabilidade e tomada de decisão e que encontram nesse ambiente um espaço para se conectar de verdade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §7B GALERIA DE FOTOS ═════════════════════ -->
+<section id="sec-tb-gallery" aria-hidden="true">
+  <div class="tb-gallery-track">
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/1.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/2.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/3.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/4.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/5.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/6.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item"><img src="/assets/images/sections/tb-carrossel/7.jpg" alt="" loading="lazy"></div>
+    <!-- duplicados para loop contínuo -->
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/1.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/2.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/3.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/4.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/5.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/6.jpg" alt="" loading="lazy"></div>
+    <div class="tb-gallery-item" aria-hidden="true"><img src="/assets/images/sections/tb-carrossel/7.jpg" alt="" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §8 TEAM BUILDING COMO EXPERIÊNCIA ═════════════════════ -->
+<section id="sec-tb-experience">
+  <div class="tb-exp-split">
+    <div class="tb-exp-img-col">
+      <img src="/assets/images/sections/se%C3%A7%C3%A3o-3/20260528_scuderiabandeiras_raceexperience_fazendacapuava_dudabairros-2967.jpg" alt="Team Building como experiência" loading="lazy">
+      <div class="tb-exp-img-veil"></div>
+    </div>
+    <div class="tb-exp-text-col">
+      <span class="label" data-r>POR QUE FUNCIONA</span>
+      <h2 data-r>Team Building como experiência, não como treinamento.</h2>
+      <p data-r>O automobilismo ensina muito mais do que&nbsp;pilotagem.</p>
+      <p data-r>Foi observando isso que empresas começaram a utilizar a Race Experience como ferramenta para desenvolver equipes, líderes e cultura&nbsp;organizacional.</p>
+      <p data-r>Cada edição pode ser facilitada por profissional especializado em desenvolvimento de equipes, com debriefs estruturados ao longo do dia para conectar experiência e&nbsp;aprendizado.</p>
+      <p data-r>A programação é customizável de acordo com o momento da empresa, o tamanho do grupo e os objetivos que precisam ser&nbsp;trabalhados.</p>
+      <a href="https://wa.me/5515998570854" class="btn btn-lime" data-r target="_blank" rel="noopener">CONHEÇA O FORMATO CORPORATIVO</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §9 OS PILOTOS ═════════════════════ -->
+<section id="sec-pilots-new">
+  <div class="wrap">
+    <div class="plt-new-header" data-r>
+      <span class="label">Quem Comanda</span>
+      <h2 class="plt-new-headline">Quem comanda<br>a experiência.</h2>
+      <p class="plt-new-intro">
+        A Race Experience é conduzida por profissionais que construíram suas carreiras
+        dentro do automobilismo de alto nível.
+      </p>
+    </div>
+
+    <div class="plt-new-grid plt-new-grid--5" data-r>
+      <!-- Christian Fittipaldi -->
+      <article class="plt-new-card">
+        <div class="plt-new-photo-wrap">
+          <img src="/assets/images/sections/se%C3%A7%C3%A3o-11/cristian-fitipaldi.jpg" alt="Christian Fittipaldi" loading="lazy">
+        </div>
+        <div class="plt-new-overlay">
+          <span class="plt-new-name">Christian Fittipaldi</span>
+        </div>
+      </article>
+
+      <!-- Rubens Barrichello -->
+      <article class="plt-new-card">
+        <div class="plt-new-photo-wrap">
+          <img src="/assets/images/sections/se%C3%A7%C3%A3o-11/rubens-barrichelo.jpg" alt="Rubens Barrichello" loading="lazy">
+        </div>
+        <div class="plt-new-overlay">
+          <span class="plt-new-name">Rubens Barrichello</span>
+        </div>
+      </article>
+
+      <!-- Ingo Hoffmann -->
+      <article class="plt-new-card">
+        <div class="plt-new-photo-wrap">
+          <img src="/assets/images/sections/se%C3%A7%C3%A3o-11/ingohoffman.jpg" alt="Ingo Hoffmann" loading="lazy">
+        </div>
+        <div class="plt-new-overlay">
+          <span class="plt-new-name">Ingo Hoffmann</span>
+        </div>
+      </article>
+
+      <!-- Átila Abreu -->
+      <article class="plt-new-card">
+        <div class="plt-new-photo-wrap">
+          <img src="/assets/images/sections/se%C3%A7%C3%A3o-11/atila-abreu.jpg" alt="Átila Abreu" loading="lazy">
+        </div>
+        <div class="plt-new-overlay">
+          <span class="plt-new-name">Átila Abreu</span>
+        </div>
+      </article>
+
+      <!-- Rafael Suzuki -->
+      <article class="plt-new-card">
+        <div class="plt-new-photo-wrap">
+          <img src="/assets/images/sections/se%C3%A7%C3%A3o-11/rafael-suzuki.jpg" alt="Rafael Suzuki" loading="lazy">
+        </div>
+        <div class="plt-new-overlay">
+          <span class="plt-new-name">Rafael Suzuki</span>
+        </div>
+      </article>
+    </div>
+
+    <p class="plt-new-caption" data-r>
+      <em>Mais do que convidados, eles fazem parte da construção da experiência e
+      ajudam a transformar cada edição em algo único.</em>
+    </p>
+
+    <div class="plt-new-cta" data-r>
+      <a href="https://wa.me/5515998570854" target="_blank" rel="noopener" class="btn btn-lime">
+        FALAR COM O TIME
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §10 DEPOIMENTOS ═════════════════════ -->
+<section id="sec-testimonials">
+  <div class="wrap">
+    <div class="test-header" data-r>
+      <span class="label">Depoimentos</span>
+      <h2 class="test-headline">QUEM VIVEU,<br>CONTA MELHOR</h2>
+      <p class="test-subtext">
+        Nenhuma apresentação consegue traduzir completamente o que acontece ao longo do Race Experience.
+        Por isso, preferimos deixar que os participantes compartilhem suas próprias percepções sobre o
+        ambiente, os aprendizados e os momentos vividos durante a programação.
+      </p>
+    </div>
+  </div>
+
+  <div class="test-carousel-wrapper" data-r>
+    <button class="test-nav test-nav--prev" aria-label="Anterior">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="test-track" id="test-track">
+      <!-- Card 1 -->
+      <div class="test-card" data-index="0">
+        <div class="test-card-inner">
+          <span class="test-badge">Vídeo em breve</span>
+          <div class="test-play">
+            <span class="test-play-icon"></span>
+          </div>
+          <div class="test-shimmer"></div>
+          <div class="test-card-bottom">
+            <span class="test-name">Depoimento 01</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="test-nav test-nav--next" aria-label="Próximo">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M8 4L14 10L8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="test-dots" id="test-dots" data-r>
+    <button class="test-dot test-dot--active" data-dot="0" aria-label="Slide 1"></button>
+  </div>
+</section>
+
+<!-- ═══════════════════ §11 FORMATOS DE CONTRATAÇÃO ═════════════════════ -->
+<section id="sec-tb-formats">
+  <div class="wrap">
+    <span class="label" data-r>COMO CONTRATAR</span>
+    <h2 data-r>Formatos de contratação</h2>
+    <div class="tb-fmt-grid" data-r>
+      <div class="tb-fmt-card">
+        <span class="tb-fmt-number">01</span>
+        <h3>Experiência fechada</h3>
+        <p>Programação exclusiva para a empresa. Ativações, pilotos e facilitação definidos junto com o time da Scuderia Bandeiras.</p>
+      </div>
+      <div class="tb-fmt-card">
+        <span class="tb-fmt-number">02</span>
+        <h3>Vagas em edição oficial</h3>
+        <p>Reserva de vagas para a equipe na próxima edição aberta.</p>
+      </div>
+      <div class="tb-fmt-card tb-fmt-card--featured">
+        <span class="tb-fmt-number">03</span>
+        <h3>Experiência personalizada</h3>
+        <p>Objetivos, dinâmicas e facilitação construídos a partir do momento e das necessidades da empresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §11B MARCAS ═════════════════════ -->
+<section id="sec-tb-brands">
+  <div class="wrap">
+    <div class="tb-brands-inner" data-r>
+      <div class="tb-brands-text">
+        <span class="label">MARCAS</span>
+        <h3>Sua marca dentro de um dos eventos mais exclusivos do automobilismo brasileiro.</h3>
+        <p>O Race Experience reúne empresários, executivos e tomadores de decisão num ambiente onde experiências são vividas, não assistidas.</p>
+      </div>
+      <div class="tb-brands-cta">
+        <a href="https://wa.me/5515998570854" class="btn btn-lime" target="_blank" rel="noopener">FALAR COM O TIME DE MARKETING</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ §12 CTA FINAL ═════════════════════ -->
+<section id="sec-final-cta">
+  <div class="final-cta-bg-stripe"></div>
+  <div class="final-cta-content wrap">
+    <div class="final-cta-inner" data-r>
+      <div class="final-cta-rule"></div>
+      <h2 class="final-cta-headline">
+        QUANDO A EMPRESA<br>PRECISA DE UM DIA<br>DIFERENTE PARA TER<br>RESULTADOS DIFERENTES.
+      </h2>
+      <div class="final-cta-actions">
+        <a href="https://wa.me/5515998570854" class="btn btn-lime final-cta-btn" target="_blank" rel="noopener noreferrer">
+          SOLICITAR UMA EXPERIÊNCIA PERSONALIZADA
+        </a>
+        <a href="https://wa.me/5515998570854" class="btn btn-lime final-cta-btn" target="_blank" rel="noopener noreferrer">
+          FALAR COM UM ESPECIALISTA
+        </a>
+      </div>
+      <p class="final-cta-meta">Team Building · Race Experience · Scuderia Bandeiras × Caterham Motorsport</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════ FOOTER ════════════════════════════ -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-l">
+      <img src="/assets/images/brand/LOGO WHITE.png" alt="Scuderia Bandeiras">
+    </div>
+    <div class="foot-c">
+      RACE EXPERIENCE · SCUDERIA BANDEIRAS × CATERHAM
+    </div>
+    <div class="foot-r">
+      <a href="https://wa.me/5515998570854" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts/main.js"></script>
+</body>
+</html>

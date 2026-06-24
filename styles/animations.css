@@ -1,0 +1,21 @@
+/* ── ANIMATIONS / KEYFRAMES ──────────────────────────────── */
+
+@keyframes slide {
+  from { transform:translateX(0); }
+  to   { transform:translateX(-50%); }
+}
+
+@keyframes cte-pulse {
+  0%,100% { opacity: .4; transform: translateY(0); }
+  50%      { opacity: 1;  transform: translateY(6px); }
+}
+
+@keyframes test-shimmer-sweep {
+  0%   { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(350%) skewX(-12deg); }
+}
+
+@keyframes legScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

@@ -1,0 +1,77 @@
+/* ── TOKENS ──────────────────────────────────────────────── */
+:root {
+  --ink:       #010C0E;
+  --ink-1:     #04181A;
+  --emerald:   #023B2D;
+  --emerald-d: #021F18;
+  --teal:      #014F48;
+  --teal-l:    #016C62;
+  --lime:      #CAD302;
+  --lime-d:    #A8B002;
+  --paper:     #FBFBFC;
+  --paper-60:  rgba(245,245,245,.60);
+  --paper-40:  rgba(245,245,245,.40);
+  --paper-20:  rgba(245,245,245,.20);
+  --paper-18:  rgba(245,245,245,.18);
+  --paper-12:  rgba(245,245,245,.12);
+  --paper-08:  rgba(245,245,245,.08);
+  --lime-20:   rgba(181,228,50,.20);
+  --lime-12:   rgba(181,228,50,.12);
+  --lime-35:   rgba(181,228,50,.35);
+  --lime-40:   rgba(181,228,50,.40);
+  --emerald-40: rgba(2,31,24,.40);
+  --emerald-65: rgba(2,31,24,.65);
+  --overlay-heavy: rgba(1,12,14,.92);
+  --overlay-mid:   rgba(1,12,14,.74);
+  --overlay-light: rgba(1,12,14,.45);
+}
+
+/* ── TEAM BUILDING — Override de Tokens e Layout ──────── */
+.page-tb {
+  --lime:      #6B8C52;
+  --lime-d:    #587342;
+  --lime-20:   rgba(107,140,82,.20);
+  --lime-12:   rgba(107,140,82,.12);
+  --lime-04:   rgba(107,140,82,.04);
+  --lime-07:   rgba(107,140,82,.07);
+  --emerald:   #0C1A0A;
+  --emerald-d: #070F06;
+  --teal:      #111D0F;
+  --ink-1:     #060D05;
+}
+
+/* Página TB: elementos sem conteúdo */
+.page-tb .ticker { display: none; }
+.page-tb #sec-testimonials { display: none; }
+
+/* Cards de dinâmicas — borda lateral estrutural (sem box) */
+.page-tb .tb-dyn-card {
+  border:none;
+  border-left:2px solid var(--lime-20);
+  background:transparent;
+  padding:28px 0 28px 28px;
+  border-radius:0;
+}
+.page-tb .tb-dyn-card:hover {
+  border-left-color:var(--lime);
+  background:var(--lime-04);
+}
+
+/* Cards de formatos — topo + destaque lateral no featured */
+.page-tb .tb-fmt-card {
+  border:none;
+  border-top:1px solid var(--paper-08);
+  border-left:3px solid transparent;
+  background:transparent;
+  border-radius:0;
+  padding:40px 32px 40px 36px;
+  transition:border-left-color .25s, background .25s;
+}
+.page-tb .tb-fmt-card:hover {
+  border-left-color:var(--lime-20);
+  background:var(--lime-04);
+}
+.page-tb .tb-fmt-card--featured {
+  border-left:3px solid var(--lime);
+  background:var(--lime-07);
+}

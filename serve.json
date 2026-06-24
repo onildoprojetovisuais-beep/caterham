@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/team-building", "destination": "/pages/team-building.html" }
+  ]
+}
