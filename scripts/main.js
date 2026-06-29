@@ -897,7 +897,7 @@
 
   cards.forEach(function (card) {
     var isFeatured = card.classList.contains('pkg-card--featured');
-    var baseY = isFeatured ? -8 : 0;
+    var baseY = isFeatured ? -20 : 0;
     var raf = null;
     var lastX = 0, lastY = 0;
 
@@ -926,7 +926,128 @@
     card.addEventListener('mouseleave', function () {
       if (raf) { cancelAnimationFrame(raf); raf = null; }
       card.classList.remove('card-lit');
-      card.style.transform = isFeatured ? 'translateY(-8px)' : '';
+      card.style.transform = isFeatured ? 'translateY(-20px)' : '';
+    });
+  });
+}());
+
+/* ── Modal escassez 1º Lote ── */
+(function () {
+  var modal = document.getElementById('scarcity-modal');
+  if (!modal) return;
+
+  var overlay  = document.getElementById('scarcityOverlay');
+  var closeBtn = document.getElementById('scarcityClose');
+  var dismiss  = document.getElementById('scarcityDismiss');
+  var ctaBtn   = document.getElementById('scarcityCtaBtn');
+
+  var SESSION_KEY = 'scarcity_modal_seen';
+
+  function openModal() {
+    modal.classList.add('scarcity-modal--open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // foco no botão principal para acessibilidade
+    if (ctaBtn) ctaBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('scarcity-modal--open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    // marca como visto na sessão
+    try { sessionStorage.setItem(SESSION_KEY, '1'); } catch(e) {}
+  }
+
+  // Não mostra se já foi visto nesta sessão
+  try {
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+  } catch(e) {}
+
+  // Abre após 4 segundos
+  var timer = setTimeout(openModal, 4000);
+
+  // Fecha ao scroll profundo (usuário claramente engajado)
+  function onScroll() {
+    if (window.scrollY > window.innerHeight * 0.8) {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Fechar via overlay, X, dismiss
+  if (overlay)  overlay.addEventListener('click',  closeModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (dismiss)  dismiss.addEventListener('click',  closeModal);
+
+  // CTA "VER OS PACOTES" — rola para seção e fecha
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeModal();
+      var target = document.getElementById('sec-packages');
+      if (target) {
+        setTimeout(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 320); // aguarda animação de fechamento
+      }
+    });
+  }
+
+  // Fechar com Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('scarcity-modal--open')) {
+      closeModal();
+    }
+  });
+}());
+
+/* ── pkg-card: settled state após animação de entrada ── */
+(function () {
+  var grid = document.querySelector('.pkg-grid');
+  if (!grid) return;
+  grid.addEventListener('animationend', function (e) {
+    var card = e.target;
+    if (!card.classList.contains('pkg-card')) return;
+    card.classList.add('pkg-card--settled');
+  });
+}());
+
+/* ── Formulários de pacote → WhatsApp ── */
+(function () {
+  var forms = document.querySelectorAll('.pkg-form');
+  if (!forms.length) return;
+
+  var WA_BASE = 'https://wa.me/5515998570854?text=';
+
+  forms.forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var plan    = form.getAttribute('data-plan') || 'Race Experience';
+      var nome    = (form.querySelector('[name="nome"]')     || {}).value || '';
+      var tel     = (form.querySelector('[name="telefone"]') || {}).value || '';
+
+      var msg = 'Olá! Meu nome é ' + nome + ' e tenho interesse no pacote ' + plan.toUpperCase() +
+                ' da Race Experience (16/07).' +
+                (tel ? ' Meu WhatsApp é ' + tel + '.' : '') +
+                ' Pode me passar mais informações?';
+
+      var url = WA_BASE + encodeURIComponent(msg);
+      window.open(url, '_blank', 'noopener,noreferrer');
+
+      // Feedback visual no botão
+      var submitBtn = form.querySelector('.pkg-form-submit');
+      if (submitBtn) {
+        var original = submitBtn.textContent;
+        submitBtn.textContent = 'Abrindo WhatsApp...';
+        submitBtn.disabled = true;
+        setTimeout(function () {
+          submitBtn.textContent = original;
+          submitBtn.disabled = false;
+        }, 3000);
+      }
     });
   });
 }());
