@@ -491,9 +491,9 @@
     [-28,52,-13],[15,54,9]
   ];
   var D_GRID = [
-    [-36,-32,0],[-12,-32,0],[12,-32,0],[36,-32,0],
-    [-36,0,0],[-12,0,0],[12,0,0],[36,0,0],
-    [-24,32,0],[0,32,0],[24,32,0]
+    [-40,-34,0],[-13.3,-34,0],[13.3,-34,0],[40,-34,0],
+    [-40,0,0],[-13.3,0,0],[13.3,0,0],[40,0,0],
+    [-27,34,0],[0,34,0],[27,34,0]
   ];
 
   // Tablet 641-768px: 3+3+3+2
@@ -607,8 +607,6 @@
   (function() {
     var lb      = document.getElementById('cte-lightbox');
     var lbImg   = document.getElementById('lbImg');
-    var lbNum   = document.getElementById('lbCapNum');
-    var lbTitle = document.getElementById('lbCapTitle');
     var lbCnt   = document.getElementById('lbCounter');
     var lbClose = document.getElementById('lbClose');
     var lbPrev  = document.getElementById('lbPrev');
@@ -619,14 +617,10 @@
     var current  = 0;
 
     function getCardData(card) {
-      var img   = card.querySelector('.cte-photo-img');
-      var num   = card.querySelector('.cte-photo-num');
-      var title = card.querySelector('.cte-photo-title');
+      var img = card.querySelector('.cte-photo-img');
       return {
-        src:   img   ? img.src   : '',
-        alt:   img   ? img.alt   : '',
-        num:   num   ? num.textContent : '',
-        title: title ? title.textContent : ''
+        src: img ? img.src : '',
+        alt: img ? img.alt : ''
       };
     }
 
@@ -638,8 +632,6 @@
       setTimeout(function() {
         lbImg.src           = d.src;
         lbImg.alt           = d.alt;
-        lbNum.textContent   = d.num;
-        lbTitle.textContent = d.title;
         lbCnt.textContent   = (current + 1) + ' / ' + allCards.length;
         lbImg.style.opacity   = '1';
         lbImg.style.transform = 'scale(1)';
