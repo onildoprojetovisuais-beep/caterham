@@ -5786,7 +5786,7 @@ footer {
 ════════════════════════════════════════════════════════ */
 #sec-event-overview {
   background: var(--ink);
-  padding: clamp(80px, 11vw, 160px) 0;
+  padding: clamp(80px, 11vw, 160px) 0 clamp(40px, 5vw, 64px);
 }
 
 .evo-header {
